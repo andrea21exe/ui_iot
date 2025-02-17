@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IotClient.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,20"
+            Spacing="30"
+            HorizontalOptions="Start"
+            VerticalOptions="Start">
+
+            <!-- Titolo -->
+            <Label Text="Dati:"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"/>
+
+            <!-- Spazio -->
+            <BoxView HeightRequest="10" Color="Transparent"/>
+
+            <!-- Sezione Valore 1 -->
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="StartAndExpand">
+                <Image x:Name="img1" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start"/>
+                <VerticalStackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Value 1:" FontSize="18" TextColor="#666" HorizontalOptions="Start"/>
+                    <Label x:Name="Value1Label" FontSize="20" FontAttributes="Bold" HorizontalOptions="Start"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <!-- Sezione Valore 2 -->
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="StartAndExpand">
+                <Image x:Name="img2" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start"/>
+                <VerticalStackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Value 2:" FontSize="18" TextColor="#666" HorizontalOptions="Start"/>
+                    <Label x:Name="Value2Label" FontSize="20" FontAttributes="Bold" HorizontalOptions="Start"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <!-- Sezione Valore 3 -->
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="StartAndExpand">
+                <Image x:Name="img3" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start"/>
+                <VerticalStackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Value 3:" FontSize="18" TextColor="#666" HorizontalOptions="Start"/>
+                    <Label x:Name="Value3Label" FontSize="20" FontAttributes="Bold" HorizontalOptions="Start"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
