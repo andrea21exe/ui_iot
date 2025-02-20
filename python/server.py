@@ -11,18 +11,9 @@ def show_map(lat: list, lon: list):
     })
     data['index'] = data.index
 
-    # Calcolare i valori minimi e massimi per il centro e il livello di zoom
-    lat_min = data['Latitudine'].min()
-    lat_max = data['Latitudine'].max()
-    lon_min = data['Longitudine'].min()
-    lon_max = data['Longitudine'].max()
-
-    # Calcolare il centro della mappa
-    center_lat = (lat_min + lat_max) / 2
-    center_lon = (lon_min + lon_max) / 2
-
-    # Impostare il range di zoom
-    zoom = 13  # Puoi regolare questo valore per il livello di zoom desiderato
+    # Calcolare i valori minimi e massimi per centrare la mappa
+    lat_mean = data['Latitudine'].mean()
+    lon_mean = data['Longitudine'].mean()
 
     # Creare la mappa con scatter_mapbox
     fig = px.scatter_mapbox(data,
@@ -30,17 +21,18 @@ def show_map(lat: list, lon: list):
                              lon='Longitudine',
                              title='Percorso sulla mappa',
                              color='index',
-                             hover_name=data.index)  # Opzionale, mostra l'indice
+                             hover_name=data.index)  
 
-    fig.update_layout(mapbox_style="open-street-map")
-
-    # Zoom sulla mappa e impostazione del centro
+    
+    # Centra la mappa
     fig.update_layout(
         mapbox=dict(
-            center=dict(lat=center_lat, lon=center_lon),  
-            zoom=zoom 
+            center=dict(lat=lat_mean, lon=lon_mean),  
+            zoom=10 
         )
     )
+    # Aggiorna lo stile della mappa
+    fig.update_layout(mapbox_style="open-street-map")
 
     fig.show()
 
@@ -50,12 +42,14 @@ class RequestHandler(BaseHTTPRequestHandler):
         post_data = self.rfile.read(content_length)
         
         try:
+            # Stampa i dati ricevuti
             data = json.loads(post_data.decode('utf-8'))
             print("Ricevuto JSON:", json.dumps(data, indent=2))
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps({"status": "success"}).encode('utf-8'))
+            # Mostra la mappa
             show_map(data['latitudine'], data['longitudine'])
         except json.JSONDecodeError:
             self.send_response(400)
@@ -68,8 +62,5 @@ if __name__ == "__main__":
     httpd = HTTPServer(server_address, RequestHandler)
     print("Server in ascolto sulla porta 9999...")
     httpd.serve_forever()
-
-
-
 
 # %%
