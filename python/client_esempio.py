@@ -2,7 +2,7 @@
 import requests
 import numpy as np
 
-url = "http://127.0.0.1:9998"
+url = "http://127.0.0.1:9999"
 
 # Coordinate di Leonforte e Agira
 leonforte = (37.64197, 14.39766)
@@ -25,7 +25,7 @@ def generate_path(start, end, num_points=100):
 data = {
     "latitudine": generate_path(leonforte, agira)[0],
     "longitudine": generate_path(leonforte, agira)[1],
-    "co2_media": 412.5,  
+    "co2_media": 4839.5,  
     "accelerazione_media": 2.3,  
     "tempo": "2025-02-20T14:30:00Z"
 }
