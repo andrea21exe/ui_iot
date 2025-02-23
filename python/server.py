@@ -9,6 +9,8 @@ import sys
 import threading
 import os
 
+NUMERO_PORTA_CLIENT = 9999
+
 class DataUpdater(QObject):
     # DataUpdater è una classe che estende QObject e funge da intermediario per l'aggiornamento dei dati nell'interfaccia utente. 
     # Essa definisce un segnale chiamato data_received, che viene emesso quando nuovi dati vengono ricevuti dal server HTTP. 
@@ -21,7 +23,7 @@ class DataUpdater(QObject):
     data_received = pyqtSignal(dict)
 
 class DataViewer(QMainWindow):
-    def __init__(self, server_address=('localhost', 9999)):
+    def __init__(self, server_address=('localhost', NUMERO_PORTA_CLIENT)):
         super().__init__()
 
         # Titolo e dimensioni della finestra
